@@ -1,0 +1,41 @@
+{
+   "name": "new-typeorm-project",
+   "version": "0.0.1",
+   "description": "Awesome project developed with TypeORM.",
+   "devDependencies": {
+      "@types/crypto-js": "^3.1.43",
+      "@types/jsonwebtoken": "^8.3.7",
+      "@types/koa": "^2.11.0",
+      "@types/koa-bodyparser": "^4.3.0",
+      "@types/koa-router": "^7.0.42",
+      "@types/node": "^8.0.29",
+      "@types/yargs": "^15.0.0",
+      "ts-node": "3.3.0",
+      "typescript": "^3.3.3333"
+   },
+   "dependencies": {
+      "class-transformer": "^0.2.3",
+      "class-validator": "^0.11.0",
+      "crypto-js": "^4.0.0",
+      "date-fns": "^2.9.0",
+      "jsonwebtoken": "^8.5.1",
+      "kcors": "^2.2.2",
+      "koa": "^2.11.0",
+      "koa-bodyparser": "^4.2.1",
+      "koa-multer": "^1.0.2",
+      "koa-router": "^7.4.0",
+      "koa-static": "^5.0.0",
+      "multer": "^1.4.2",
+      "mysql": "^2.18.1",
+      "pg": "^7.3.0",
+      "reflect-metadata": "^0.1.10",
+      "routing-controllers": "^0.8.0",
+      "typeorm": "0.2.22",
+      "yargs": "^15.1.0"
+   },
+   "scripts": {
+      "build": "node_modules/.bin/tsc",
+      "start": "baseUrl=http://localhost:3000 ts-node src/index.ts",
+      "start:2": "node ./build/index.js"
+   }
+}
