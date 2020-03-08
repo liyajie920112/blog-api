@@ -15,4 +15,10 @@ export class Role extends BaseModel {
    */
   @Column({ length: 200 })
   rolevalue: string;
+
+  /**
+   * 角色描述
+   */
+  @Column({ length: 2000 })
+  roledesc: string;
 }

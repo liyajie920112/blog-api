@@ -7,5 +7,9 @@ export class RoleRepository extends AbstractRepository<Role> {
   addRole(m: Role) {
     return this.repository.save(m)
   }
+
+  getRoles() {
+    return this.repository.find({ isDel: false })
+  }
 }
 

@@ -39,4 +39,7 @@ export class BaseController {
   returnSuccess(data: object | undefined, msg: string = '成功') {
     return new ReturnModel(data, msg)
   }
+  returnSuccessMsg(msg: string = '成功') {
+    return new ReturnModel({}, msg)
+  }
 }
