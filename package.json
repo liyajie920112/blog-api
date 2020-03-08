@@ -3,6 +3,7 @@
    "version": "0.0.1",
    "description": "Awesome project developed with TypeORM.",
    "devDependencies": {
+      "@types/config": "0.0.36",
       "@types/crypto-js": "^3.1.43",
       "@types/jsonwebtoken": "^8.3.7",
       "@types/koa": "^2.11.0",
@@ -16,6 +17,7 @@
    "dependencies": {
       "class-transformer": "^0.2.3",
       "class-validator": "^0.11.0",
+      "config": "^3.3.0",
       "crypto-js": "^4.0.0",
       "date-fns": "^2.9.0",
       "jsonwebtoken": "^8.5.1",

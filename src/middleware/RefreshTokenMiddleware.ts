@@ -1,18 +1,25 @@
 import { Middleware, KoaMiddlewareInterface } from "routing-controllers";
-import { verifyToken } from '../utils/common'
+import { verifyToken, getToken } from '../utils/common'
+import { config } from '../utils/config'
 
-@Middleware({ type: "before" })
-export class LoggingMiddleware implements KoaMiddlewareInterface {
+@Middleware({ type: "after" })
+export class RefreshTokenMiddleware implements KoaMiddlewareInterface {
+
   async use(context: any, next: (err?: any) => Promise<any>): Promise<any> {
     const { request } = context
     const authorization = request.header.authorization
     if (context.url.includes('/api/login') || context.url.includes('/upload/imgs')) {
       return await next()
     }
+
     if (authorization) { // 如果有token
       // 验证token的正确性
       try {
-        const r = await verifyToken(authorization)
+        const r: any = await verifyToken(authorization)
+        const exptime = r.exp * 1000
+        if (exptime - Date.now() <= (config.get('token.tokenRefreshTime') * 1000)) { // 如果距离过期时间还有半个小时, 则需要更新token
+          context.body.newToken = getToken(r.data)
+        }
         return await next()
       } catch (e) {
         // 验证refreshToken是否失效

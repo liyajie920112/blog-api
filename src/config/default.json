@@ -1,0 +1,6 @@
+{
+  "token": {
+    "tokenExp": 86400,
+    "tokenRefreshTime": 1800
+  }
+}

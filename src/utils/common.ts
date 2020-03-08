@@ -1,14 +1,18 @@
 import md5 = require('crypto-js/md5')
 import jwt = require('jsonwebtoken')
+import { config } from './config'
+
+const accessTokenExp = config.get('token.tokenExp') // 24h
+const refreshTokenExp = accessTokenExp + config.get('token.tokenRefreshTime')
 
 const secretStr = 'exam!@#secret'
 function getMd5(str: string): string {
   return md5(str).toString()
 }
 
-function getToken(data: any): string {
+function getToken(data: any, isRefreshToken: boolean = false): string {
   return jwt.sign({
-    exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24), // 24h后过期 
+    exp: Math.floor(Date.now() / 1000) + (isRefreshToken ? refreshTokenExp : accessTokenExp), // 24h后过期 
     data,
   }, secretStr)
 }
@@ -38,5 +42,6 @@ function verifyToken(token: string) {
 export {
   getMd5,
   getToken,
-  verifyToken
+  verifyToken,
+  decodeToken
 }

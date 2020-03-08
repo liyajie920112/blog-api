@@ -17,7 +17,7 @@ export class LoginController extends BaseController {
     const r = await this.getUserRepo().getUserByUsernameAndPwd(user.username, user.password)
     const _r = {
       data: {},
-      token: ''
+      token: '',
     }
     if (r) { // 登录成功
       // 更新最后登录时间

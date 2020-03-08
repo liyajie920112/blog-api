@@ -17,7 +17,7 @@ export class UserRepository extends AbstractRepository<User> {
 
   getUserByUsernameAndPwd(username: string, password: string) {
     const _md5pwd = getMd5(password)
-    return this.repository.findOne({ username, password: _md5pwd })
+    return this.repository.findOne({ username, password: _md5pwd, isDel: false })
   }
 
   getUserById(id: string) {

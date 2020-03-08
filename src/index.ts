@@ -6,6 +6,7 @@ import { argv } from 'yargs'
 import { UserController } from "./controllers/UserController";
 import { LoginController } from "./controllers/LoginController";
 import { LoggingMiddleware } from "./middleware/LoginMiddleware";
+import { RefreshTokenMiddleware } from "./middleware/RefreshTokenMiddleware";
 const serve = require('koa-static')
 
 console.log('argv', argv)
@@ -14,7 +15,7 @@ createConnection().then(conn => {
         routePrefix: '/api',
         cors: true,
         controllers: [AdminController, UserController, LoginController],
-        middlewares: [LoggingMiddleware]
+        middlewares: [LoggingMiddleware, RefreshTokenMiddleware]
     })
 
     console.log(__dirname + '/static')
