@@ -1,7 +1,7 @@
 import { Entity, Column } from "typeorm";
 import { BaseModel } from "./BaseModel";
 
-@Entity('ex_role')
+@Entity('base_role')
 export class Role extends BaseModel {
 
   /**
@@ -21,4 +21,10 @@ export class Role extends BaseModel {
    */
   @Column({ length: 2000 })
   roledesc: string;
+
+  /**
+   * 角色权限值
+   */
+  @Column({ length: 1000 })
+  rolePromissions: string = '';
 }

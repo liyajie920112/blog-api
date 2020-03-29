@@ -1,5 +1,5 @@
 import { Middleware, KoaMiddlewareInterface } from "routing-controllers";
-import { verifyToken, getToken } from '../utils/common'
+import { verifyToken, getToken, checkedWhiteList } from '../utils/common'
 import { config } from '../utils/config'
 
 @Middleware({ type: "after" })
@@ -8,7 +8,7 @@ export class RefreshTokenMiddleware implements KoaMiddlewareInterface {
   async use(context: any, next: (err?: any) => Promise<any>): Promise<any> {
     const { request } = context
     const authorization = request.header.authorization
-    if (context.url.includes('/api/login') || context.url.includes('/upload/imgs')) {
+    if (checkedWhiteList(context.url)) {
       return await next()
     }
 

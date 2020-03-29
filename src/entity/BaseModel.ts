@@ -1,4 +1,4 @@
-import { PrimaryGeneratedColumn, Column, CreateDateColumn } from "typeorm";
+import { PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 export class BaseModel {
 
@@ -20,4 +20,6 @@ export class BaseModel {
   @Column({ default: false })
   isDel: boolean;
 
+  @UpdateDateColumn()
+  updateTime: Date = new Date();
 }

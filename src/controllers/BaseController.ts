@@ -4,6 +4,8 @@ import { getCustomRepository } from "typeorm";
 import { UserRepository } from "../repositorys/UserRepository";
 import { RoleRepository } from "../repositorys/RoleRepository";
 import { AdminRepository } from "../repositorys/AdminRepository";
+import { PromissionRepository } from "../repositorys/PromissionRepository";
+import { BlogRepository } from "../repositorys/BlogRepository";
 
 @Controller()
 export class BaseController {
@@ -20,6 +22,16 @@ export class BaseController {
 
   getAdminRepo() {
     const repo = getCustomRepository(AdminRepository)
+    return repo
+  }
+
+  getPromissionRepo() {
+    const repo = getCustomRepository(PromissionRepository)
+    return repo
+  }
+
+  getBlogRepo() {
+    const repo = getCustomRepository(BlogRepository)
     return repo
   }
 

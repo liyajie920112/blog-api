@@ -1,12 +1,12 @@
 import { Middleware, KoaMiddlewareInterface } from "routing-controllers";
-import { verifyToken } from '../utils/common'
+import { verifyToken, checkedWhiteList } from '../utils/common'
 
 @Middleware({ type: "before" })
 export class LoggingMiddleware implements KoaMiddlewareInterface {
   async use(context: any, next: (err?: any) => Promise<any>): Promise<any> {
     const { request } = context
     const authorization = request.header.authorization
-    if (context.url.includes('/api/login') || context.url.includes('/upload/imgs')) {
+    if (checkedWhiteList(context.url)) {
       return await next()
     }
     if (authorization) { // 如果有token

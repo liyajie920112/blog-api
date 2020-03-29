@@ -2,7 +2,7 @@ import { Entity, Column, ManyToMany, JoinTable } from "typeorm";
 import { BaseModel } from "./BaseModel";
 import { Role } from "./Role";
 
-@Entity('ex_user')
+@Entity('base_user')
 export class User extends BaseModel {
 
   @Column({ length: 30, comment: '用户名' })

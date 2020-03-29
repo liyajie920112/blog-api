@@ -1,5 +1,6 @@
 import md5 = require('crypto-js/md5')
 import jwt = require('jsonwebtoken')
+import pinyin = require('pinyin')
 import { config } from './config'
 
 const accessTokenExp = config.get('token.tokenExp') // 24h
@@ -23,7 +24,7 @@ function decodeToken(token: string) {
 
 function verifyToken(token: string) {
   return new Promise((resolve, reject) => {
-    jwt.verify(token, secretStr, function(err, decoded) {
+    jwt.verify(token, secretStr, function (err, decoded) {
       if (err) {
         /*
           err = {
@@ -32,16 +33,35 @@ function verifyToken(token: string) {
             expiredAt: 1408621000
           }
         */
-       reject(false)
+        reject(false)
       }
       resolve(decoded)
     })
   })
 }
 
+function checkedWhiteList(url: string) {
+  return config.get('whiteList').some((a: string) => {
+    return url.includes(a)
+  })
+}
+
+function chineseToPinyin(title: string, split: string = '-') {
+  const py = pinyin(title, {
+    style: pinyin.STYLE_NORMAL
+  })
+  const pyArr: Array<string> = []
+  py.forEach((item: string[]) => {
+    pyArr.push(item[0])
+  })
+  return pyArr.join(split)
+}
+
 export {
   getMd5,
   getToken,
   verifyToken,
-  decodeToken
+  decodeToken,
+  checkedWhiteList,
+  chineseToPinyin
 }

@@ -2,7 +2,7 @@ import { Entity, Column } from "typeorm";
 import { BaseModel } from "./BaseModel";
 import { Min } from 'class-validator'
 
-@Entity('ex_admin')
+@Entity('base_admin')
 export class Admin extends BaseModel {
 
     @Min(1)

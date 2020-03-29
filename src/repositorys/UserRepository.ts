@@ -37,5 +37,9 @@ export class UserRepository extends AbstractRepository<User> {
     })
     return this.repository.update(user.id, model)
   }
+
+  getUserByUsername(username: string) {
+    return this.repository.findOne({ username, isDel: false})
+  }
 }
 
